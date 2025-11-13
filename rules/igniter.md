@@ -1,3 +1,10 @@
+<!--
+SPDX-FileCopyrightText: 2020 Zach Daniel
+SPDX-FileCopyrightText: 2024 igniter contributors <https://github.com/ash-project/igniter/graphs.contributors>
+
+SPDX-License-Identifier: MIT
+-->
+
 # Rules for working with Igniter
 
 ## Understanding Igniter

@@ -22,7 +22,7 @@
    git config user.name
    git config user.email
    ```
-   
+
    Then include the following declaration in the commit message or PR description:
    ```
    Reviewed-by: [Name from git config] <[Email from git config]>
@@ -50,12 +50,12 @@ Co-Authored-By: Claude <noreply@anthropic.com>
    - Searching for specific code patterns or structures
    - Language-aware refactoring operations
    - Complex structural queries that require understanding of code semantics
-   
+
    Use `ast-grep` via the Bash tool for these structural searches, falling back to the Grep tool only for simple text-based searches or when language syntax understanding isn't needed.
 
-## Enhanced MCP Integration Guidelines
+## Two-Layer Intelligence Architecture
 
-5. **Revolutionary Three-Layer Intelligence System**: All agents now operate using a sophisticated three-layer architecture for unprecedented code intelligence:
+5. **Streamlined Intelligence System**: All agents operate using an efficient two-layer architecture for comprehensive code intelligence:
 
    **LAYER 1: SERENA SEMANTIC INTELLIGENCE**
    - Use Serena MCP for all code operations: `find_symbol`, `get_symbols_overview`, `search_for_pattern`, `find_referencing_symbols`
@@ -63,51 +63,97 @@ Co-Authored-By: Claude <noreply@anthropic.com>
    - Extract precise code context before any analysis or modification
    - Map system dependencies and architectural relationships semantically
 
-   **LAYER 2: ZEN AI-POWERED ANALYSIS (16 Sophisticated Tools)**
-   - **Deep Analysis Suite**: `thinkdeep` (multi-stage investigation), `analyze` (comprehensive), `debug` (root cause), `refactor` (optimization)
-   - **Collaborative Intelligence**: `consensus` (multi-model validation), `planner` (interactive planning), `chat` (thinking partner)
-   - **Quality & Security**: `codereview` (systematic), `precommit` (validation), `secaudit` (OWASP), `testgen` (comprehensive)
-   - **Code Intelligence**: `tracer` (execution flow), `docgen` (documentation)
-   - **Advanced Reasoning**: `challenge` (critical thinking), `sequential-thinking` (complex decomposition)
-
-   **LAYER 3: SEQUENTIAL THINKING COMPLEX REASONING**
+   **LAYER 2: SEQUENTIAL THINKING COMPLEX REASONING**
    - Automatically activate for problems requiring ≥3 steps or complex decision trees
    - Use for multi-faceted analysis, hypothesis development, and systematic solution synthesis
-   - Combine with Zen consensus for critical decision validation
+   - Essential for architectural decisions, security analysis, and performance optimization
 
-6. **Sophisticated Intelligence Cascades**: Use systematic workflows that leverage all three layers:
-   
-   **Standard Intelligence Cascade:**
+6. **Streamlined Intelligence Workflows**: Use systematic patterns that leverage both layers:
+
+   **Standard Intelligence Flow:**
    ```
-   Serena (semantic context) → Zen analysis (AI-powered) → Sequential Thinking (complex reasoning) → Zen consensus (multi-model validation) → Zen challenge (assumption testing)
-   ```
-   
-   **Debugging Intelligence Cascade:**
-   ```
-   Serena (bug context mapping) → Zen thinkdeep (multi-hypothesis investigation) → Sequential Thinking (root cause analysis) → Zen consensus (solution validation) → Zen testgen (regression prevention)
+   Serena (semantic context) → Sequential Thinking (complex reasoning) → Implementation
    ```
 
-7. **Advanced Model Selection with 28+ Models**: Use context-aware model orchestration:
-   - **Deep Analysis**: `gemini-2.5-pro` (1M context, thinking mode) + `anthropic/claude-opus-4.1` + `openai/o3` consensus
-   - **Security Analysis**: `anthropic/claude-opus-4.1` primary + `deepseek/deepseek-r1-0528` (thinking mode) + `openai/o3` validation
-   - **Performance Optimization**: `openai/o3` primary + `gemini-2.5-flash` + `anthropic/claude-opus-4.1` validation
-   - **Complex Reasoning**: `deepseek/deepseek-r1-0528` + `gemini-2.5-pro` for advanced reasoning scenarios
+   **Complex Problem Solving:**
+   ```
+   Serena (context mapping) → Sequential Thinking (multi-hypothesis analysis) → Validated solution
+   ```
 
-8. **Assumption Challenge Workflows**: Use Zen's `challenge` tool to systematically validate:
-   - Architectural decisions and design assumptions
-   - Implementation approaches and technical choices
-   - Security strategies and threat assessments
-   - Performance optimization strategies
+## DRY (Don't Repeat Yourself) Principles
 
-9. **Multi-Model Consensus Validation**: For critical decisions, always use Zen's `consensus` tool with 2-3 specialized models to ensure thorough validation and prevent single-model bias.
+7. **Mandatory Code Reuse**: BEFORE generating any code, follow this strict process:
+
+   **STEP 1: SEARCH FIRST**
+   - Use Grep/Find/Serena tools to locate existing patterns
+   - Identify reusable components, modules, or functions
+   - Check for similar implementations that can be extended
+   - Look for established conventions and follow them
+
+   **STEP 2: REUSE ALWAYS**
+   - Extend existing modules/functions rather than creating new ones
+   - Import and use shared components
+   - Follow established patterns in the codebase
+   - Never duplicate business logic
+
+   **STEP 3: EXTRACT COMMON PATTERNS**
+   - If pattern appears 2+ times, extract to shared module
+   - Create abstractions with parameters
+   - Replace all instances with references
+   - Document the shared pattern
+
+   **STEP 4: GENERATE MINIMALLY**
+   - Generate only truly unique new code
+   - Reference all shared components
+   - Maintain consistent coding style
+   - Optimize imports and dependencies
+
+8. **DRY Anti-Patterns to Avoid**:
+   - ❌ Copy-paste code blocks
+   - ❌ Duplicate business logic
+   - ❌ Repeat configuration values
+   - ❌ Create similar components
+   - ❌ Write redundant tests
+   - ❌ Duplicate error handling
+
+9. **DRY Validation Checklist** - Before submitting code:
+   - [ ] No duplicated functions
+   - [ ] All constants extracted to configuration
+   - [ ] Shared utilities created for common operations
+   - [ ] Patterns documented in code comments
+   - [ ] Imports optimized
+   - [ ] Zero copy-paste code
+
+## Complexity-Based Automatic Activation
+
+10. **Sequential Thinking Triggers** - Automatically activate Sequential Thinking MCP when:
+
+    **Task Complexity Thresholds:**
+    - Step count: ≥ 3 distinct steps required
+    - Decision points: ≥ 2 branching decisions
+    - Stakeholder impact: ≥ 3 affected systems/teams
+    - Time horizon: ≥ 1 week implementation
+    - Rollback complexity: Manual intervention required
+
+    **Problem Domain Triggers:**
+    - **Architecture**: ≥ 5 interacting components or ≥ 3 external integrations
+    - **Security**: Any OWASP Top 10 category or PII/sensitive data involved
+    - **Performance**: ≥ 20% performance change expected or ≥ 2 bottlenecks identified
+    - **Data Migration**: ≥ 1GB data or ≥ 3 services to migrate
+    - **Bug Investigation**: ≥ 3 components involved or unknown root cause
+
+    **Environmental Factors:**
+    - **Production**: Lower thresholds for production issues
+    - **Critical Systems**: Mandatory for core functionality changes
+    - **Compliance**: Required for any regulatory standard involvement
 
 ## Additional Guidelines
 
 - **MANDATORY**: Always check if a task matches any specialized agent before attempting it directly
-- **PROACTIVE MCP ORCHESTRATION**: Automatically activate three-layer intelligence for complex problems (≥3 steps, architectural decisions, security concerns, performance issues)
 - **SEMANTIC-FIRST APPROACH**: Always use Serena for code context before any analysis or modification
-- **ASSUMPTION VALIDATION**: Use Zen challenge tool to test critical assumptions and prevent confirmation bias
-- Consider parallel execution of independent tasks using multiple agents
-- Always maintain code quality and follow project conventions
-- Ensure all commits include proper attribution and review declaration
-- Use ast-grep for structural code analysis when syntax understanding is beneficial
+- **COMPLEXITY AWARENESS**: Automatically activate Sequential Thinking when complexity thresholds are met
+- **DRY ENFORCEMENT**: Search and reuse before generating new code
+- **PARALLEL EXECUTION**: Consider parallel execution of independent tasks using multiple agents
+- **CODE QUALITY**: Always maintain code quality and follow project conventions
+- **PROPER ATTRIBUTION**: Ensure all commits include proper attribution and review declaration
+- **STRUCTURAL ANALYSIS**: Use ast-grep for syntax-aware code analysis when beneficial

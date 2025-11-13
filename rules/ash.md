@@ -1,8 +1,14 @@
+<!--
+SPDX-FileCopyrightText: 2019 ash contributors <https://github.com/ash-project/ash/graphs.contributors>
+
+SPDX-License-Identifier: MIT
+-->
+
 # Rules for working with Ash
 
 ## Understanding Ash
 
-Ash is an opinionated, composable framework for building applications in Elixir. It provides a declarative approach to modeling your domain with resources at the center. Read documentation  *before* attempting to use it's features. Do not assume that you have prior knowledge of the framework or its conventions.
+Ash is an opinionated, composable framework for building applications in Elixir. It provides a declarative approach to modeling your domain with resources at the center. Read documentation  *before* attempting to use its features. Do not assume that you have prior knowledge of the framework or its conventions.
 
 ## Code Structure & Organization
 
@@ -70,7 +76,7 @@ group = MyApp.Resource |> Ash.get!(id) |> Ash.load!(rel: [:nested])
 
 # GOOD - use code interface with get_by
 resource DashboardGroup do
-  define :get_by_id, action: :read, get_by: [:id]
+  define :get_dashboard_group_by_id, action: :read, get_by: [:id]
 end
 
 # Then call:
@@ -80,25 +86,29 @@ MyApp.Domain.get_dashboard_group_by_id!(id, load: [rel: [:nested]])
 **Code interface options** - Prefer passing options directly to code interface functions rather than building queries manually:
 
 ```elixir
-# PREFERRED - Concise and idiomatic
+# PREFERRED - Use the query option for filter, sort, limit, etc.
+# the query option is passed to `Ash.Query.build/2`
 posts = MyApp.Blog.list_posts!(
-  filter: [status: :published],
-  load: [author: :profile, comments: [:author]],
-  sort: [published_at: :desc],
-  limit: 10
+  query: [
+    filter: [status: :published],
+    sort: [published_at: :desc],
+    limit: 10
+  ],
+  load: [author: :profile, comments: [:author]]
 )
 
-# Complex scenarios use the query option
+# All query-related options go in the query parameter
 users = MyApp.Accounts.list_users!(
-  query: [filter: [active: true], load: [:profile], sort: [created_at: :desc]]
+  query: [filter: [active: true], sort: [created_at: :desc]],
+  load: [:profile]
 )
 
 # AVOID - Verbose manual query building
 query = MyApp.Post |> Ash.Query.filter(...) |> Ash.Query.load(...)
-posts = MyApp.Blog.read!(query)
+posts = Ash.read!(query)
 ```
 
-Supported options: `load:`, `filter:`, `sort:`, `limit:`, `offset:`, `query:`, `page:`, `stream?:`
+Supported options: `load:`, `query:` (which accepts `filter:`, `sort:`, `limit:`, `offset:`, etc.), `page:`, `stream?:`
 
 **Using Scopes in LiveViews** - When using `Ash.Scope`, the scope will typically be assigned to `scope` in LiveViews and used like so:
 
@@ -153,6 +163,8 @@ These functions are particularly useful for conditional rendering of UI elements
   outside the transaction.
 - Use action arguments for inputs that need validation
 - Use preparations to modify queries before execution
+- Preparations support `where` clauses for conditional execution
+- Use `only_when_valid?` to skip preparations when the query is invalid
 - Use changes to modify changesets before execution
 - Use validations to validate changesets before execution
 - Prefer domain code interfaces to call actions instead of directly building queries/changesets and calling functions in the `Ash` module
@@ -208,6 +220,11 @@ These error classes help you catch and handle errors at an appropriate level of 
 
 Validations ensure that data meets your business requirements before it gets processed by an action. Unlike changes, validations cannot modify the changeset - they can only validate it or add errors.
 
+Validations work on both changesets and queries. Built-in validations that support queries include:
+- `action_is`, `argument_does_not_equal`, `argument_equals`, `argument_in`
+- `compare`, `confirm`, `match`, `negate`, `one_of`, `present`, `string_length`
+- Custom validations that implement the `supports/1` callback
+
 Common validation patterns:
 
 ```elixir
@@ -218,15 +235,25 @@ end
 validate match(:email, "@")
 validate one_of(:status, [:active, :inactive, :pending])
 
-# Conditional validations
+# Conditional validations with where clauses
 validate present(:phone_number) do
   where present(:contact_method) and eq(:contact_method, "phone")
+end
+
+# only_when_valid? - skip validation if prior validations failed
+validate expensive_validation() do
+  only_when_valid? true
 end
 
 # Action-specific vs global validations
 actions do
   create :sign_up do
     validate present([:email, :password])  # Only for this action
+  end
+  
+  read :search do
+    argument :email, :string
+    validate match(:email, ~r/^[^\s]+@[^\s]+\.[^\s]+$/)  # Validates query arguments
   end
 end
 
@@ -255,6 +282,39 @@ end
   ```
 
 - Make validations **atomic** when possible to ensure they work correctly with direct database operations by implementing the `atomic/3` callback in custom validation modules.
+
+### Using Preparations
+
+Preparations modify queries before they're executed. They are used to add filters, sorts, or other query modifications based on the query context.
+
+Common preparation patterns:
+
+```elixir
+# Built-in preparations
+prepare build(sort: [created_at: :desc])
+prepare build(filter: [active: true])
+
+# Conditional preparations with where clauses
+prepare build(filter: [visible: true]) do
+  where argument_equals(:include_hidden, false)
+end
+
+# only_when_valid? - skip preparation if prior validations failed
+prepare expensive_preparation() do
+  only_when_valid? true
+end
+
+# Action-specific vs global preparations
+actions do
+  read :recent do
+    prepare build(sort: [created_at: :desc], limit: 10)
+  end
+end
+
+preparations do
+  prepare build(filter: [deleted: false]), on: [:read, :update]
+end
+```
 
 ```elixir
 defmodule MyApp.Validations.IsEven do
@@ -425,14 +485,13 @@ end
 change {MyApp.Changes.ProcessOrder, []}
 ```
 
-## Anonymous Functions
+## Custom Modules vs. Anonymous Functions
 
 Prefer to put code in its own module and refer to that in changes, preparations, validations etc.
 
 For example, prefer this:
 
 ```elixir
-# in
 defmodule MyApp.MyDomain.MyResource.Changes.SlugifyName do
   use Ash.Resource.Change
 
@@ -466,6 +525,8 @@ Relationships describe connections between resources and are a core component of
 - Always choose the appropriate relationship type based on your domain model
 
 #### Relationship Types
+
+- For Polymorphic relationships, you can model them using `Ash.Type.Union`; see the “Polymorphic Relationships” guide for more information.
 
 ```elixir
 relationships do
@@ -541,7 +602,7 @@ Ash.load!(post, :author)
 
 Prefer to use the `strict?` option when loading to only load necessary fields on related data.
 
-```Elixir
+```elixir
 MyApp.Post
 |> Ash.Query.load([comments: [:title]], strict?: true)
 ```
@@ -758,7 +819,7 @@ policy action_type(:update) do
 end
 ```
 
-To require BOTH conditions in that exmaple, you would use `forbid_unless` for the first condition:
+To require BOTH conditions in that example, you would use `forbid_unless` for the first condition:
 
 ```elixir
 # CORRECT - This requires BOTH conditions
@@ -901,6 +962,26 @@ calculations do
 end
 ```
 
+### Expressions
+
+In order to use expressions outside of resources, changes, preparations etc. you will need to use `Ash.Expr`.
+
+It provides both `expr/1` and template helpers like `actor/1` and `arg/1`.
+
+For example:
+
+```elixir
+import Ash.Expr
+
+Author
+|> Ash.Query.aggregate(:count_of_my_favorited_posts, :count, [:posts], query: [
+  filter: expr(favorited_by(user_id: ^actor(:id)))
+])
+```
+
+See the expressions guide for more information on what is available in expresisons and
+how to use them.
+
 ### Module Calculations
 
 For complex calculations, create a module that implements `Ash.Resource.Calculation`:
@@ -991,30 +1072,45 @@ MyDomain.full_name("John", "Doe", ", ")  # Returns "John, Doe"
 
 ## Aggregates
 
-Aggregates allow you to retrieve summary information over groups of related data, like counts, sums, or averages. Define aggregates in the `aggregates` block of a resource:
+Aggregates allow you to retrieve summary information over groups of related data, like counts, sums, or averages. Define aggregates in the `aggregates` block of a resource.
+
+Aggregates can work over relationships or directly over unrelated resources:
 
 ```elixir
 aggregates do
-  # Count the number of published posts for a user
+  # Related aggregates - use relationship path
   count :published_post_count, :posts do
     filter expr(published == true)
   end
 
-  # Sum the total amount of all orders
   sum :total_sales, :orders, :amount
 
-  # Check if a user has any admin roles
   exists :is_admin, :roles do
     filter expr(name == "admin")
   end
+
+  # Unrelated aggregates - use resource module directly
+  count :matching_profiles_count, Profile do
+    filter expr(name == parent(name))
+  end
+  
+  sum :total_report_score, Report, :score do
+    filter expr(author_name == parent(name))
+  end
+  
+  exists :has_reports, Report do
+    filter expr(author_name == parent(name))
+  end
 end
 ```
+
+For unrelated aggregates, use `parent/1` to reference fields from the source resource.
 
 ### Aggregate Types
 
 - **count**: Counts related items meeting criteria
 - **sum**: Sums a field across related items
-- **exists**: Returns boolean indicating if matching related items exist
+- **exists**: Returns boolean indicating if matching related items exist (also supports unrelated resources)
 - **first**: Gets the first related value matching criteria
 - **list**: Lists the related values for a specific field
 - **max**: Gets the maximum value of a field
@@ -1062,11 +1158,55 @@ end
 Use aggregates inline within expressions:
 
 ```elixir
+# Related inline aggregates
 calculate :grade_percentage, :decimal, expr(
   count(answers, query: [filter: expr(correct == true)]) * 100 /
   count(answers)
 )
+
+# Unrelated inline aggregates
+calculate :profile_count, :integer, expr(
+  count(Profile, filter: expr(name == parent(name)))
+)
+
+calculate :stats, :map, expr(%{
+  profiles: count(Profile, filter: expr(active == true)),
+  reports: count(Report, filter: expr(author_name == parent(name))),
+  has_active_profile: exists(Profile, active == true and name == parent(name))
+})
 ```
+
+## Exists Expressions
+
+Use `exists/2` to check for the existence of records, either through relationships or unrelated resources:
+
+### Related Exists
+
+```elixir
+# Check if user has any admin roles
+Ash.Query.filter(User, exists(roles, name == "admin"))
+
+# Check if post has comments with high scores
+Ash.Query.filter(Post, exists(comments, score > 50))
+```
+
+### Unrelated Exists
+
+```elixir
+# Check if any profile exists with the same name
+Ash.Query.filter(User, exists(Profile, name == parent(name)))
+
+# Check if user has any reports
+Ash.Query.filter(User, exists(Report, author_name == parent(name)))
+
+# Complex existence checks
+Ash.Query.filter(User, 
+  active == true and 
+  exists(Profile, active == true and name == parent(name))
+)
+```
+
+Unrelated exists expressions automatically apply authorization using the target resource's primary read action. Use `parent/1` to reference fields from the source resource.
 
 ## Testing
 
@@ -1077,3 +1217,53 @@ When testing resources:
 - Use `authorize?: false` in tests where authorization is not the focus
 - Write generators using `Ash.Generator`
 - Prefer to use raising versions of functions whenever possible, as opposed to pattern matching
+
+### Preventing Deadlocks in Concurrent Tests
+
+When running tests concurrently, using fixed values for identity attributes can cause deadlock errors. Multiple tests attempting to create records with the same unique values will conflict.
+
+#### Use Globally Unique Values
+
+Always use globally unique values for identity attributes in tests:
+
+```elixir
+# BAD - Can cause deadlocks in concurrent tests
+%{email: "test@example.com", username: "testuser"}
+
+# GOOD - Use globally unique values
+%{
+  email: "test-#{System.unique_integer([:positive])}@example.com",
+  username: "user_#{System.unique_integer([:positive])}",
+  slug: "post-#{System.unique_integer([:positive])}"
+}
+```
+
+#### Creating Reusable Test Generators
+
+For better organization, create a generator module:
+
+```elixir
+defmodule MyApp.TestGenerators do
+  use Ash.Generator
+
+  def user(opts \\ []) do
+    changeset_generator(
+      User,
+      :create,
+      defaults: [
+        email: "user-#{System.unique_integer([:positive])}@example.com",
+        username: "user_#{System.unique_integer([:positive])}"
+      ],
+      overrides: opts
+    )
+  end
+end
+
+# In your tests
+test "concurrent user creation" do
+  users = MyApp.TestGenerators.generate_many(user(), 10)
+  # Each user has unique identity attributes
+end
+```
+
+This applies to ANY field used in identity constraints, not just primary keys. Using globally unique values prevents frustrating intermittent test failures in CI environments.

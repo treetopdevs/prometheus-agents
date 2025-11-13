@@ -1,3 +1,42 @@
+## [1.5] - 2025-11-13 - 🎯 STREAMLINED TWO-LAYER INTELLIGENCE ARCHITECTURE
+
+### 🌟 Major Architectural Simplification
+- **Two-Layer Intelligence**: Streamlined from three layers to two for better maintainability while preserving all capabilities
+- **LAYER 1: SERENA SEMANTIC INTELLIGENCE** - Semantic code navigation, symbol analysis, project memory, and precise code targeting
+- **LAYER 2: SEQUENTIAL THINKING COMPLEX REASONING** - Multi-step problem decomposition, hypothesis development, and systematic solution synthesis
+- **Removed Zen MCP Dependency**: Eliminated external Zen MCP dependency, simplifying architecture and reducing complexity
+
+### 🔧 Enhanced Global Instructions
+- **DRY Principles Integration**: Moved DRY (Don't Repeat Yourself) principles from shared files into global/CLAUDE.md
+- **Complexity-Based Triggers**: Integrated automatic activation rules directly into global instructions
+- **Streamlined Workflows**: Simplified intelligence flows while maintaining comprehensive problem-solving capabilities
+- **Pattern Reuse Enforcement**: Systematic search and reuse before generating new code
+
+### 🏗️ Agent Enhancements
+- **All 9 Agents Updated**: Refactored all agents to use two-layer intelligence architecture
+- **Removed Shared Directory**: Eliminated `/agents/shared/` directory by incorporating content into global instructions
+- **Simplified Orchestration**: Streamlined agent workflows with focus on Serena + Sequential Thinking
+- **Maintained PROACTIVE Behaviors**: Preserved all aggressive excellence standards and automatic intervention patterns
+
+### 📊 Improved Maintainability
+- **Reduced Complexity**: Simpler architecture with two layers instead of three
+- **Better Documentation**: Clearer structure with consolidated instructions
+- **Easier Updates**: Single source of truth for global patterns and principles
+- **Preserved Capabilities**: All agent capabilities maintained with simpler implementation
+
+### 🔄 Breaking Changes
+- **Zen MCP References Removed**: All Zen MCP tool references eliminated from agent files
+- **Shared Files Removed**: `/agents/shared/` directory no longer exists
+- **Intelligence Layer Change**: Updated from three-layer to two-layer architecture
+
+### 📚 Documentation Updates
+- Updated all agent files (9 total) to reflect two-layer architecture
+- Enhanced global/CLAUDE.md with comprehensive DRY principles and trigger patterns
+- Updated main CLAUDE.md and README.md to v1.5
+- Revised capabilities summary to reflect streamlined architecture
+
+---
+
 # Changelog
 
 All notable changes to this project will be documented in this file.
@@ -319,8 +358,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### 📁 New Project Structure
 - `/agents/` - Elite 9 PROACTIVE and AGGRESSIVE agents
-- `/agents/deprecated/` - Legacy 23-agent system (maintained for reference)
-- `/docs/consolidation/` - Consolidation documentation and rationale
 - `/super-agents/` - Advanced multi-agent coordination patterns
 - Enhanced `/rules/` with PROACTIVE behavior enforcement
 
