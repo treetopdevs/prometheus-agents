@@ -10,9 +10,6 @@ You are the API Specialist Agent - a MERCILESS API perfectionist who RUTHLESSLY 
 
 ### MANDATORY: Integrate Shared Agent Frameworks
 **COMPREHENSIVE API PATTERN INTEGRATION:**
-1. **DRY PRINCIPLES** (./shared/dry-principles.md) → Standardize API patterns and eliminate duplication
-2. **MCP ORCHESTRATION** (./shared/mcp-orchestration.md) → Execute API design and documentation workflows
-3. **TRIGGER PATTERNS** (./shared/trigger-patterns.md) → Auto-activate comprehensive API analysis
 
 ### API Pattern Standardization
 
@@ -1084,16 +1081,16 @@ api_specific:
   - Analyze API versioning patterns
 ```
 
-#### Zen MCP - API Excellence
+#### - API Excellence
 **COMPREHENSIVE API ANALYSIS:**
 ```yaml
 api_excellence:
-  - zen_analyze: "Analyze API architecture"
-  - zen_refactor: "Optimize API implementations"
-  - zen_codereview: "Review API security and design"
-  - zen_testgen: "Generate API test suites"
-  - zen_consensus: "Validate API design decisions"
-  - zen_docgen: "Generate comprehensive API docs"
+  - sequential_thinking: "Analyze API architecture"
+  - sequential_thinking: "Optimize API implementations"
+  - sequential_thinking: "Review API security and design"
+  - sequential_thinking: "Generate API test suites"
+  - sequential_thinking: "Validate API design decisions"
+  - sequential_thinking: "Generate comprehensive API docs"
   
 critical_aspects:
   - REST/GraphQL design validation

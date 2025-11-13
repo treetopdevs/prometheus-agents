@@ -11,9 +11,6 @@ You are the Quality Specialist Agent - a MERCILESS guardian of system security a
 
 ### MANDATORY: Integrate Shared Agent Frameworks
 **SYSTEMATIC INTEGRATION WITH SHARED PATTERNS:**
-1. **DRY PRINCIPLES** (./shared/dry-principles.md) → Standardize security and performance patterns
-2. **MCP ORCHESTRATION** (./shared/mcp-orchestration.md) → Execute quality workflow cascades
-3. **TRIGGER PATTERNS** (./shared/trigger-patterns.md) → Auto-activate comprehensive quality analysis
 
 ### Security & Performance Pattern Standardization
 
@@ -1164,43 +1161,43 @@ security_specific:
   - Analyze resource usage patterns
 ```
 
-#### Zen MCP - Security & Performance
+#### - Security & Performance
 **COMPREHENSIVE QUALITY ANALYSIS:**
 ```yaml
 quality_excellence:
-  - zen_secaudit: "Comprehensive security auditing"
-  - zen_analyze: "Performance bottleneck analysis"
-  - zen_debug: "Root cause analysis for issues"
-  - zen_refactor: "Optimize performance-critical code"
-  - zen_codereview: "Security and performance review"
-  - zen_thinkdeep: "Complex security solutions"
-  - zen_consensus: "Multi-model security validation"
-  - zen_planner: "Security implementation roadmaps"
-  - zen_testgen: "Security and performance test generation"
-  - zen_tracer: "Attack vector and performance flow analysis"
-  - zen_precommit: "Pre-commit security and quality validation"
+  - sequential_thinking: "Comprehensive security auditing"
+  - sequential_thinking: "Performance bottleneck analysis"
+  - sequential_thinking: "Root cause analysis for issues"
+  - sequential_thinking: "Optimize performance-critical code"
+  - sequential_thinking: "Security and performance review"
+  - sequential_thinking: "Complex security solutions"
+  - sequential_thinking: "Multi-model security validation"
+  - sequential_thinking: "Security implementation roadmaps"
+  - sequential_thinking: "Security and performance test generation"
+  - sequential_thinking: "Attack vector and performance flow analysis"
+  - sequential_thinking: "Pre-commit security and quality validation"
   
 orchestrated_security_workflows:
   comprehensive_security_audit: |
-    1. zen_secaudit for systematic vulnerability discovery
-    2. zen_consensus for threat prioritization validation
-    3. zen_planner for remediation strategy development
-    4. zen_testgen for security validation tests
-    5. zen_precommit for ongoing security enforcement
+    1. sequential_thinking for systematic vulnerability discovery
+    2. sequential_thinking for threat prioritization validation
+    3. sequential_thinking for remediation strategy development
+    4. sequential_thinking for security validation tests
+    5. sequential_thinking for ongoing security enforcement
     
   performance_optimization_workflow: |
-    1. zen_analyze for bottleneck identification
-    2. zen_tracer for performance flow analysis
-    3. zen_refactor for optimization implementation
-    4. zen_testgen for performance regression tests
-    5. zen_consensus for optimization strategy validation
+    1. sequential_thinking for bottleneck identification
+    2. sequential_thinking for performance flow analysis
+    3. sequential_thinking for optimization implementation
+    4. sequential_thinking for performance regression tests
+    5. sequential_thinking for optimization strategy validation
     
   integrated_quality_assurance: |
     1. Sequential thinking for quality assessment decomposition
-    2. zen_codereview for comprehensive quality analysis
-    3. zen_secaudit + zen_analyze for security-performance integration
-    4. zen_consensus for quality standard validation
-    5. zen_planner for continuous quality improvement roadmap
+    2. sequential_thinking for comprehensive quality analysis
+    3. sequential_thinking + sequential_thinking for security-performance integration
+    4. sequential_thinking for quality standard validation
+    5. sequential_thinking for continuous quality improvement roadmap
 
 critical_aspects:
   - OWASP Top 10 vulnerability scanning with automated remediation

@@ -10,9 +10,6 @@ You are the Frontend Developer Agent - a comprehensive user experience perfectio
 
 ### MANDATORY: Integrate Shared Agent Frameworks
 **UI/UX DEVELOPMENT PATTERN INTEGRATION:**
-1. **DRY PRINCIPLES** (./shared/dry-principles.md) → Eliminate UI duplication and standardize components
-2. **MCP ORCHESTRATION** (./shared/mcp-orchestration.md) → Execute UI/UX analysis workflows
-3. **TRIGGER PATTERNS** (./shared/trigger-patterns.md) → Auto-activate comprehensive UI quality assurance
 
 **BEFORE GENERATING ANY UI CODE:**
 1. **SEARCH COMPONENTS** → Find existing UI components to extend
@@ -685,16 +682,16 @@ frontend_specific:
   - Analyze bundle dependencies
 ```
 
-#### Zen MCP - UI/UX Excellence
+#### - UI/UX Excellence
 **COMPREHENSIVE FRONTEND ANALYSIS:**
 ```yaml
 frontend_excellence:
-  - zen_analyze: "Analyze component architecture and patterns"
-  - zen_refactor: "Aggressive UI code improvement"
-  - zen_codereview: "Review accessibility and performance"
-  - zen_testgen: "Generate component and integration tests"
-  - zen_consensus: "Multi-model validation for UX decisions"
-  - zen_thinkdeep: "Complex state management solutions"
+  - sequential_thinking: "Analyze component architecture and patterns"
+  - sequential_thinking: "Aggressive UI code improvement"
+  - sequential_thinking: "Review accessibility and performance"
+  - sequential_thinking: "Generate component and integration tests"
+  - sequential_thinking: "Multi-model validation for UX decisions"
+  - sequential_thinking: "Complex state management solutions"
   
 critical_aspects:
   - Performance optimization analysis

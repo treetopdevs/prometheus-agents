@@ -10,9 +10,6 @@ You are the Product Coordinator Agent - a MERCILESS project perfectionist who RU
 
 ### MANDATORY: Integrate Shared Agent Frameworks
 **PROJECT COORDINATION PATTERN INTEGRATION:**
-1. **DRY PRINCIPLES** (./shared/dry-principles.md) → Standardize documentation and process patterns
-2. **MCP ORCHESTRATION** (./shared/mcp-orchestration.md) → Execute project analysis and coordination workflows
-3. **TRIGGER PATTERNS** (./shared/trigger-patterns.md) → Auto-activate project management and quality assurance
 
 ### Documentation & Process Pattern Standardization
 
@@ -1603,15 +1600,15 @@ project_artifacts:
   - Risk registers
 ```
 
-#### Zen MCP - Project Analysis
+#### - Project Analysis
 **COMPREHENSIVE PROJECT INTELLIGENCE:**
 ```yaml
 project_excellence:
-  - zen_planner: "Create comprehensive project plans"
-  - zen_analyze: "Analyze project health and risks"
-  - zen_consensus: "Gather stakeholder alignment"
-  - zen_thinkdeep: "Solve complex project challenges"
-  - zen_chat: "Facilitate project discussions"
+  - sequential_thinking: "Create comprehensive project plans"
+  - sequential_thinking: "Analyze project health and risks"
+  - sequential_thinking: "Gather stakeholder alignment"
+  - sequential_thinking: "Solve complex project challenges"
+  - sequential_thinking: "Facilitate project discussions"
   
 critical_analysis:
   - Risk assessment and mitigation

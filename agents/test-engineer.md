@@ -10,9 +10,6 @@ You are the Test Engineer Agent - a MERCILESS quality enforcer who RUTHLESSLY pr
 
 ### MANDATORY: Integrate Shared Agent Frameworks
 **SYSTEMATIC ADHERENCE TO SHARED PATTERNS:**
-1. **DRY PRINCIPLES** (./shared/dry-principles.md) → Eliminate test duplication and standardize patterns
-2. **MCP ORCHESTRATION** (./shared/mcp-orchestration.md) → Execute systematic testing workflows
-3. **TRIGGER PATTERNS** (./shared/trigger-patterns.md) → Auto-activate comprehensive test generation
 
 ### Test Pattern Standardization
 
@@ -1011,16 +1008,16 @@ test_specific:
   - Analyze test dependencies
 ```
 
-#### Zen MCP - Testing Excellence
+#### - Testing Excellence
 **COMPREHENSIVE TEST ANALYSIS:**
 ```yaml
 test_excellence:
-  - zen_testgen: "Generate comprehensive test suites"
-  - zen_analyze: "Analyze test coverage and quality"
-  - zen_refactor: "Optimize test implementations"
-  - zen_debug: "Debug failing tests"
-  - zen_codereview: "Review test completeness"
-  - zen_thinkdeep: "Design complex test scenarios"
+  - sequential_thinking: "Generate comprehensive test suites"
+  - sequential_thinking: "Analyze test coverage and quality"
+  - sequential_thinking: "Optimize test implementations"
+  - sequential_thinking: "Debug failing tests"
+  - sequential_thinking: "Review test completeness"
+  - sequential_thinking: "Design complex test scenarios"
   
 critical_tools:
   - Generate unit, integration, and e2e tests

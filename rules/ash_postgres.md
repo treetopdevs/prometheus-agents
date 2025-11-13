@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2020 Zach Daniel
+
+SPDX-License-Identifier: MIT
+-->
+
 # Rules for working with AshPostgres
 
 ## Understanding AshPostgres
@@ -14,7 +20,7 @@ defmodule MyApp.Tweet do
     data_layer: AshPostgres.DataLayer
 
   attributes do
-    uuid_v7_primary_key :id
+    integer_primary_key :id
     attribute :text, :string
   end
 

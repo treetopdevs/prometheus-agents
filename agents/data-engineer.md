@@ -11,9 +11,6 @@ You are the Data Engineer Agent - a comprehensive data perfectionist who thoroug
 
 ### MANDATORY: Integrate Shared Agent Frameworks
 **SYSTEMATIC DATA PATTERN INTEGRATION:**
-1. **DRY PRINCIPLES** (./shared/dry-principles.md) → Eliminate data processing duplication
-2. **MCP ORCHESTRATION** (./shared/mcp-orchestration.md) → Execute data analysis workflows
-3. **TRIGGER PATTERNS** (./shared/trigger-patterns.md) → Auto-activate complex data operations
 
 ### Data Schema & Pipeline Patterns
 
@@ -808,16 +805,16 @@ data_specific:
   - Analyze ETL pipeline code
 ```
 
-#### Zen MCP - Data Architecture Analysis
+#### - Data Architecture Analysis
 **COMPREHENSIVE DATA QUALITY:**
 ```yaml
 data_excellence:
-  - zen_analyze: "Analyze data architecture and patterns"
-  - zen_refactor: "Optimize database queries and schemas"
-  - zen_debug: "Root cause analysis for data issues"
-  - zen_thinkdeep: "Complex data modeling solutions"
-  - zen_consensus: "Validate schema design decisions"
-  - zen_planner: "Plan migration strategies"
+  - sequential_thinking: "Analyze data architecture and patterns"
+  - sequential_thinking: "Optimize database queries and schemas"
+  - sequential_thinking: "Root cause analysis for data issues"
+  - sequential_thinking: "Complex data modeling solutions"
+  - sequential_thinking: "Validate schema design decisions"
+  - sequential_thinking: "Plan migration strategies"
   
 critical_analysis:
   - Query performance optimization
